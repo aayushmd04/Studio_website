@@ -20,7 +20,7 @@ export default function Header() {
     <>
       <header className="fixed top-0 left-0 right-0 z-50 transition-all duration-500 bg-transparent">
         <div className="max-w-7xl mx-auto px-6 pt-0 pb-3 flex items-center justify-between">
-          <Link to="/" className="flex items-center hover:opacity-80 transition-opacity" aria-label="Swaralogy — home">
+          <Link to="/" className="flex items-center hover:opacity-80 transition-opacity -mt-8 md:-mt-10" aria-label="Swaralogy — home">
             <img src={logo} alt="Swaralogy — the home studio" className="h-32 md:h-40 w-auto object-contain" />
           </Link>
 
