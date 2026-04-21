@@ -40,14 +40,6 @@ export default function Header() {
           </nav>
 
           <div className="flex items-center gap-4">
-            <Link
-              to="/tour"
-              className="hidden md:inline-flex items-center gap-2 bg-foreground text-background text-xs font-semibold uppercase tracking-wider px-5 py-2.5 rounded-full hover:bg-foreground/90 transition-colors"
-            >
-              <Ticket className="w-3.5 h-3.5" />
-              Buy Tickets
-            </Link>
-
             <button
               className="md:hidden text-foreground"
               onClick={() => setMobileOpen(true)}
@@ -85,14 +77,6 @@ export default function Header() {
                 {link.label}
               </Link>
             ))}
-            <Link
-              to="/tour"
-              onClick={() => setMobileOpen(false)}
-              className="mt-4 inline-flex items-center gap-2 bg-foreground text-background text-sm font-semibold uppercase tracking-wider px-8 py-3 rounded-full"
-            >
-              <Ticket className="w-4 h-4" />
-              Buy Tickets
-            </Link>
           </motion.div>
         )}
       </AnimatePresence>
