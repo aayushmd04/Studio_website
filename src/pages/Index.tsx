@@ -71,12 +71,7 @@ export default function Index() {
 
       {/* Centered hero content */}
       <div className="relative z-10 flex flex-col items-center justify-center min-h-screen px-6 pb-32 pt-24">
-        <motion.div
-          initial={{ opacity: 0, y: 40 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 1, delay: 0.2 }}
-          className="text-center max-w-4xl mx-auto"
-        >
+        <div className="text-center max-w-4xl mx-auto">
           {/* Decorative line */}
           <motion.div
             initial={{ scaleX: 0 }}
@@ -89,30 +84,7 @@ export default function Index() {
             <span className="block">Your Vision.</span>
             <span className="block text-foreground/70">Our Sound</span>
           </h1>
-
-          {/* Animated waveform decoration */}
-          <div className="flex items-center justify-center gap-1 my-6">
-            {[...Array(24)].map((_, i) => (
-              <motion.div
-                key={i}
-                className="w-0.5 bg-foreground/30 rounded-full"
-                animate={{
-                  height: [4, Math.random() * 20 + 6, 4],
-                }}
-                transition={{
-                  duration: 1.2 + Math.random() * 0.8,
-                  repeat: Infinity,
-                  delay: i * 0.05,
-                  ease: "easeInOut",
-                }}
-              />
-            ))}
-          </div>
-
-          <p className="text-foreground/50 text-lg md:text-xl tracking-widest uppercase font-light">
-            Immersed in the melody
-          </p>
-        </motion.div>
+        </div>
       </div>
 
       {/* Bottom showcase cards */}
