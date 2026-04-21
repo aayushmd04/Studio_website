@@ -1,7 +1,7 @@
 import { Link } from "react-router-dom";
 import { motion } from "framer-motion";
 import { Music, ShoppingBag, Play } from "lucide-react";
-import heroConcert from "@/assets/hero-concert.jpg";
+import heroConcert from "@/assets/studio-hero.jpg";
 import albumSilentThunder from "@/assets/album-silent-thunder.jpg";
 import merchTshirt from "@/assets/merch-tshirt.jpg";
 import albumMidnightEcho from "@/assets/album-midnight-echo.jpg";
@@ -54,19 +54,20 @@ export default function Index() {
       {/* Hero background with Ken Burns */}
       <motion.img
         src={heroConcert}
-        alt="Velvet Ruins performing live"
+        alt="Velvet Ruins recording studio with keyboard and DAW"
         className="absolute inset-0 w-full h-full object-cover object-center"
-        initial={{ scale: 1.05 }}
+        initial={{ scale: 1.08 }}
         animate={{ scale: 1 }}
-        transition={{ duration: 20, ease: "linear", repeat: Infinity, repeatType: "reverse" }}
+        transition={{ duration: 24, ease: "linear", repeat: Infinity, repeatType: "reverse" }}
       />
 
       {/* Grain overlay */}
       <div className="absolute inset-0 grain-overlay pointer-events-none" />
 
-      {/* Gradient overlays */}
-      <div className="absolute inset-0 bg-gradient-to-b from-background/70 via-background/30 to-background" />
-      <div className="absolute inset-0 bg-gradient-to-t from-background via-transparent to-transparent" />
+      {/* Gradient overlays — tuned for the studio image's deep blues */}
+      <div className="absolute inset-0 bg-gradient-to-b from-background/80 via-background/40 to-background" />
+      <div className="absolute inset-0 bg-gradient-to-t from-background via-background/20 to-transparent" />
+      <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,transparent_0%,hsl(var(--background)/0.55)_75%)]" />
 
       {/* Centered hero content */}
       <div className="relative z-10 flex flex-col items-center justify-center min-h-screen px-6 pb-32 pt-24">
