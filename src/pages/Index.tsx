@@ -85,9 +85,9 @@ export default function Index() {
             className="w-16 h-px bg-foreground/40 mx-auto mb-8"
           />
 
-          <h1 className="font-serif text-8xl md:text-[10rem] lg:text-[12rem] font-black text-foreground tracking-tighter leading-[0.85] mb-6 drop-shadow-2xl">
+          <h1 className="text-7xl md:text-9xl font-bold text-foreground tracking-tighter leading-none mb-4">
             <span className="block">Your Vision.</span>
-            <span className="block text-foreground/80 italic">Our Sound</span>
+            <span className="block text-foreground/70">Our Sound</span>
           </h1>
 
           {/* Animated waveform decoration */}
