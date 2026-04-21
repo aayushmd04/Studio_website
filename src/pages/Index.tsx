@@ -64,10 +64,11 @@ export default function Index() {
       {/* Grain overlay */}
       <div className="absolute inset-0 grain-overlay pointer-events-none" />
 
-      {/* Gradient overlays — tuned for the studio image's deep blues */}
-      <div className="absolute inset-0 bg-gradient-to-b from-background/80 via-background/40 to-background" />
-      <div className="absolute inset-0 bg-gradient-to-t from-background via-background/20 to-transparent" />
-      <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,transparent_0%,hsl(var(--background)/0.55)_75%)]" />
+          {/* Gradient overlays — lighter cinematic treatment for studio image */}
+          <div className="absolute inset-0 bg-gradient-to-b from-background/50 via-background/20 to-background/80" />
+          <div className="absolute inset-0 bg-gradient-to-t from-background/90 via-transparent to-background/30" />
+          <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,transparent_30%,hsl(var(--background)/0.4)_100%)]" />
+          <div className="absolute inset-0 bg-foreground/5" />
 
       {/* Centered hero content */}
       <div className="relative z-10 flex flex-col items-center justify-center min-h-screen px-6 pb-32 pt-24">
@@ -85,10 +86,10 @@ export default function Index() {
             className="w-16 h-px bg-foreground/40 mx-auto mb-8"
           />
 
-          <h1 className="text-7xl md:text-9xl font-bold text-foreground tracking-tighter leading-none mb-4">
-            Velvet
+          <h1 className="text-6xl md:text-8xl font-bold text-foreground tracking-tight leading-[0.9] mb-4">
+            Your Vision.
             <br />
-            <span className="text-foreground/60">Ruins</span>
+            <span className="text-foreground/70">Our Sound</span>
           </h1>
 
           {/* Animated waveform decoration */}
