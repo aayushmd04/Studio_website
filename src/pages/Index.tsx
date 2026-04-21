@@ -64,10 +64,10 @@ export default function Index() {
       {/* Grain overlay */}
       <div className="absolute inset-0 grain-overlay pointer-events-none" />
 
-          {/* Gradient overlays — tuned for the studio image's deep blues */}
-          <div className="absolute inset-0 bg-gradient-to-b from-background/80 via-background/40 to-background" />
-          <div className="absolute inset-0 bg-gradient-to-t from-background via-background/20 to-transparent" />
-          <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,transparent_0%,hsl(var(--background)/0.55)_75%)]" />
+          {/* Gradient overlays — lighter for more background visibility */}
+          <div className="absolute inset-0 bg-gradient-to-b from-background/50 via-background/25 to-background/70" />
+          <div className="absolute inset-0 bg-gradient-to-t from-background/80 via-transparent to-transparent" />
+          <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,transparent_20%,hsl(var(--background)/0.35)_85%)]" />
 
       {/* Centered hero content */}
       <div className="relative z-10 flex flex-col items-center justify-center min-h-screen px-6 pb-32 pt-24">
@@ -80,9 +80,9 @@ export default function Index() {
             className="w-16 h-px bg-foreground/40 mx-auto mb-8"
           />
 
-          <h1 className="text-7xl md:text-9xl font-bold text-foreground tracking-tighter leading-none mb-4">
-            <span className="block">Your Vision.</span>
-            <span className="block text-red-500">Our Sound</span>
+          <h1 className="text-7xl md:text-9xl font-bold tracking-tighter leading-none mb-4">
+            <span className="block text-foreground/40">Your Vision.</span>
+            <span className="block text-red-500/40">Our Sound</span>
           </h1>
         </div>
       </div>
