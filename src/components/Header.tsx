@@ -21,7 +21,7 @@ export default function Header() {
       <header className="fixed top-0 left-0 right-0 z-50 transition-all duration-500 bg-transparent">
         <div className="max-w-7xl mx-auto px-4 pt-0 pb-1 flex flex-col items-center">
           <Link to="/" className="flex items-center hover:opacity-80 transition-opacity" aria-label="Swaralogy — home">
-            <img src={logo} alt="Swaralogy — the home studio" className="h-44 md:h-56 w-auto object-contain" />
+            <img src={logo} alt="Swaralogy — the home studio" className="h-52 md:h-72 w-auto object-contain" />
           </Link>
 
           <nav className="hidden md:flex items-center gap-4 mt-1">
