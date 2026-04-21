@@ -18,13 +18,13 @@ export default function Header() {
 
   return (
     <>
-      <header className="fixed top-0 left-0 right-0 z-50 transition-all duration-500 bg-transparent -mt-2">
+      <header className="fixed top-0 left-0 right-0 z-50 transition-all duration-500 bg-transparent -mt-6">
         <div className="max-w-7xl mx-auto px-4 pt-0 pb-0 flex flex-col items-center">
-          <Link to="/" className="flex items-center hover:opacity-80 transition-opacity -mt-4" aria-label="Swaralogy — home">
+          <Link to="/" className="flex items-center hover:opacity-80 transition-opacity -mt-8" aria-label="Swaralogy — home">
             <img src={logo} alt="Swaralogy — the home studio" className="h-52 md:h-72 w-auto object-contain" />
           </Link>
 
-          <nav className="hidden md:flex items-center gap-4 -mt-2">
+          <nav className="hidden md:flex items-center gap-4 -mt-4">
             {navLinks.map((link) => (
               <Link
                 key={link.path}
