@@ -82,7 +82,7 @@ export default function Index() {
 
           <h1 className="text-7xl md:text-9xl font-bold text-foreground tracking-tighter leading-none mb-4">
             <span className="block">Your Vision.</span>
-            <span className="block text-foreground/70">Our Sound</span>
+            <span className="block text-red-500">Our Sound</span>
           </h1>
         </div>
       </div>
