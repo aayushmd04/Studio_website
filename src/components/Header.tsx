@@ -24,7 +24,7 @@ export default function Header() {
             <img src={logo} alt="Swaralogy — the home studio" className="h-36 md:h-48 w-auto object-contain" />
           </Link>
 
-          <nav className="hidden md:flex items-center gap-8 mt-4">
+          <nav className="hidden md:flex items-center gap-6 mt-2">
             {navLinks.map((link) => (
               <Link
                 key={link.path}
