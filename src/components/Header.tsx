@@ -1,7 +1,8 @@
 import { useState } from "react";
 import { Link, useLocation } from "react-router-dom";
-import { Menu, X, Ticket } from "lucide-react";
+import { Menu, X } from "lucide-react";
 import { motion, AnimatePresence } from "framer-motion";
+import logo from "@/assets/swaralogy-logo.png";
 
 const navLinks = [
   { label: "Music", path: "/music" },
@@ -19,8 +20,8 @@ export default function Header() {
     <>
       <header className="fixed top-0 left-0 right-0 z-50 transition-all duration-500 bg-transparent">
         <div className="max-w-7xl mx-auto px-6 py-4 flex items-center justify-between">
-          <Link to="/" className="text-xl font-bold text-foreground tracking-[0.2em] uppercase hover:text-foreground/70 transition-colors">
-            VR
+          <Link to="/" className="flex items-center hover:opacity-80 transition-opacity" aria-label="Swaralogy — the home studio">
+            <img src={logo} alt="Swaralogy — the home studio" className="h-12 md:h-14 w-auto object-contain" />
           </Link>
 
           <nav className="hidden md:flex items-center gap-8">
