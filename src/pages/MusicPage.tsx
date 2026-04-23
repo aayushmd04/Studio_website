@@ -1,39 +1,27 @@
 import { Link } from "react-router-dom";
 import { motion } from "framer-motion";
-import { releases as localReleases } from "@/data/content";
-import fetchGoogleSheet from "@/lib/googleSheets";
-import { fetchProjectsFromSupabase, getPublicUrlFromStorage } from "@/lib/supabaseClient";
 import { useEffect, useState } from "react";
-import { normalizeImageUrl } from "@/lib/urlUtils";
+import { fetchProjectsFromSupabase, getPublicUrlFromStorage } from "@/lib/supabaseClient";
 
 export default function ProjectsPage() {
-  const [items, setItems] = useState(localReleases);
-
-  // Expose env var value for debugging in the UI
-  const clientSheetId = (import.meta.env as any).VITE_PROJECTS_SHEET_ID || "";
+  const [items, setItems] = useState([]);
 
   useEffect(() => {
-    // Prefer Google Sheets when configured
     (async () => {
-      const sheetId = clientSheetId;
-      const sheetName = (import.meta.env as any).VITE_PROJECTS_SHEET_NAME || "Sheet1";
-      if (!sheetId) return;
-
       try {
-        const rows = await fetchGoogleSheet(sheetId, sheetName);
-        const mapped = rows.map((r: any) => ({
-          slug: String(r.slug || r.Slug || r.slug_text || "").trim(),
-          title: String(r.title || r.Title || r.name || "").trim(),
-          type: String(r.type || r.Type || "Project").trim(),
-          year: Number(r.year || r.Year || 2024),
-          description: String(r.description || r.Description || "").trim(),
-          image: normalizeImageUrl(r.image || r.Image || ""),
-        })).filter((it: any) => it.slug);
-
-        if (mapped.length) setItems(mapped.concat(localReleases.filter(r => !mapped.find((m:any)=>m.slug===r.slug))));
+        const rows = await fetchProjectsFromSupabase();
+        const mapped = await Promise.all(rows.map(async (r: any) => ({
+          slug: String(r.slug || "").trim(),
+          title: String(r.title || "").trim(),
+          type: String(r.type || "Project").trim(),
+          year: Number(r.year || 2024),
+          description: String(r.description || "").trim(),
+          image: r.image ? await getPublicUrlFromStorage(r.image) : "",
+        })));
+        setItems(mapped.filter((it: any) => it.slug));
       } catch (err) {
         // eslint-disable-next-line no-console
-        console.error("Failed to load sheet:", err);
+        console.error("Failed to load projects from Supabase:", err);
       }
     })();
   }, []);
