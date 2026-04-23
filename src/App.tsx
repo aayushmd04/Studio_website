@@ -13,6 +13,7 @@ import VideosPage from "./pages/VideosPage";
 import VideoDetailPage from "./pages/VideoDetailPage";
 import TourPage from "./pages/TourPage";
 import InfoPage from "./pages/InfoPage";
+import ContactPage from "./pages/ContactPage";
 import NotFound from "./pages/NotFound";
 
 const queryClient = new QueryClient();
@@ -34,6 +35,7 @@ const App = () => (
             <Route path="/videos/:slug" element={<VideoDetailPage />} />
             <Route path="/tour" element={<TourPage />} />
             <Route path="/info" element={<InfoPage />} />
+            <Route path="/contact" element={<ContactPage />} />
           </Route>
           <Route path="*" element={<NotFound />} />
         </Routes>

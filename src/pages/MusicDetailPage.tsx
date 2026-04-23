@@ -2,6 +2,8 @@ import { useParams, Link } from "react-router-dom";
 import { motion } from "framer-motion";
 import { ExternalLink, ArrowLeft } from "lucide-react";
 import { releases } from "@/data/content";
+import fetchGoogleSheet from "@/lib/googleSheets";
+import { useEffect, useState } from "react";
 
 const platforms = [
   { name: "Apple Music", url: "#" },
@@ -20,7 +22,33 @@ const merchOptions = [
 
 export default function MusicDetailPage() {
   const { slug } = useParams();
-  const release = releases.find((r) => r.slug === slug);
+  // Prefer sheet-driven data when available: fetch sheet and merge with local releases
+  const [items, setItems] = useState(releases);
+
+  useEffect(() => {
+    const sheetId = (import.meta.env as any).VITE_PROJECTS_SHEET_ID || "";
+    const sheetName = (import.meta.env as any).VITE_PROJECTS_SHEET_NAME || "Sheet1";
+    if (!sheetId) return;
+
+    fetchGoogleSheet(sheetId, sheetName)
+      .then((rows) => {
+        const mapped = rows.map((r: any) => ({
+          slug: String(r.slug || r.Slug || r.slug_text || "").trim(),
+          title: String(r.title || r.Title || r.name || "").trim(),
+          type: String(r.type || r.Type || "Album").trim(),
+          year: Number(r.year || r.Year || 2024),
+          description: String(r.description || r.Description || "").trim(),
+          image: String(r.image || r.Image || ""),
+        })).filter((it: any) => it.slug);
+
+        if (mapped.length) setItems(mapped.concat(releases.filter(r => !mapped.find((m:any)=>m.slug===r.slug))));
+      })
+      .catch(() => {
+        /* ignore sheet errors and keep local releases */
+      });
+  }, []);
+
+  const release = items.find((r) => r.slug === slug);
 
   if (!release) {
     return (
