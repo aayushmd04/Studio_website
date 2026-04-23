@@ -2,6 +2,7 @@ import { Link } from "react-router-dom";
 import { motion } from "framer-motion";
 import { releases as localReleases } from "@/data/content";
 import fetchGoogleSheet from "@/lib/googleSheets";
+import { fetchProjectsFromSupabase, getPublicUrlFromStorage } from "@/lib/supabaseClient";
 import { useEffect, useState } from "react";
 import { normalizeImageUrl } from "@/lib/urlUtils";
 
