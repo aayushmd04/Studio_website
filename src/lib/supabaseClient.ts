@@ -1,4 +1,4 @@
-let supabase: import('@supabase/supabase-js').SupabaseClient | null = null;
+let supabase: any = null;
 
 async function getSupabaseClient() {
   if (supabase) return supabase;
