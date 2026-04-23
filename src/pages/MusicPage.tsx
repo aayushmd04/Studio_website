@@ -2,7 +2,6 @@ import { Link } from "react-router-dom";
 import { motion } from "framer-motion";
 import { releases as localReleases } from "@/data/content";
 import fetchGoogleSheet from "@/lib/googleSheets";
-import { fetchProjectsFromSupabase, getPublicUrlFromStorage } from "@/lib/supabaseClient";
 import { useEffect, useState } from "react";
 import { normalizeImageUrl } from "@/lib/urlUtils";
 
@@ -13,29 +12,8 @@ export default function ProjectsPage() {
   const clientSheetId = (import.meta.env as any).VITE_PROJECTS_SHEET_ID || "";
 
   useEffect(() => {
-    // Prefer Supabase when configured
+    // Prefer Google Sheets when configured
     (async () => {
-      try {
-        const supaRows = await fetchProjectsFromSupabase();
-        if (supaRows && supaRows.length) {
-          const mapped = supaRows.map((r: any) => ({
-            slug: String(r.slug || r.Slug || r.slug_text || "").trim(),
-            title: String(r.title || r.Title || r.name || "").trim(),
-            type: String(r.type || r.Type || "Project").trim(),
-            year: Number(r.year || r.Year || 2024),
-            description: String(r.description || r.Description || "").trim(),
-            image: getPublicUrlFromStorage(r.image) || normalizeImageUrl(r.image || r.Image || ""),
-          })).filter((it: any) => it.slug);
-          if (mapped.length) {
-            setItems(mapped.concat(localReleases.filter(r => !mapped.find((m:any)=>m.slug===r.slug))));
-            return;
-          }
-        }
-      } catch (e) {
-        // ignore and fall back to sheet/local
-      }
-
-      // Fallback to Google Sheets if Supabase not configured or empty
       const sheetId = clientSheetId;
       const sheetName = (import.meta.env as any).VITE_PROJECTS_SHEET_NAME || "Sheet1";
       if (!sheetId) return;
