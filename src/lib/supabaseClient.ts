@@ -5,10 +5,10 @@ async function getSupabaseClient() {
   if (supabase) return supabase;
   if (typeof window === 'undefined') return null;
   const SUPABASE_URL = (import.meta.env as any).VITE_SUPABASE_URL || '';
-  const SUPABASE_ANON_KEY = (import.meta.env as any).VITE_SUPABASE_PUBLISHABLE_KEY || '';
-  if (!SUPABASE_URL || !SUPABASE_ANON_KEY) return null;
+  const SUPABASE_PUBLISHABLE_KEY = (import.meta.env as any).VITE_SUPABASE_PUBLISHABLE_KEY || '';
+  if (!SUPABASE_URL || !SUPABASE_PUBLISHABLE_KEY) return null;
   const mod = await import('@supabase/supabase-js');
-  supabase = mod.createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
+  supabase = mod.createClient(SUPABASE_URL, SUPABASE_PUBLISHABLE_KEY);
   return supabase;
 }
 
