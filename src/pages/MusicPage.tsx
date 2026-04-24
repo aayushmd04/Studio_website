@@ -18,6 +18,7 @@ export default function ProjectsPage() {
           year: Number(r.year || 2024),
           description: String(r.description || "").trim(),
           image: r.image ? await getPublicUrlFromStorage(r.image) : "",
+          youtubeLink: String(r.youtube_link || r.youtube || r.youtubeUrl || r.link || "").trim(),
         })));
         setItems(mapped.filter((it: any) => it.slug));
       } catch (err) {
@@ -38,26 +39,49 @@ export default function ProjectsPage() {
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.45, delay: i * 0.06 }}
             >
-              <Link to={`/music/${release.slug}`} className="group block">
-                <motion.div
-                  whileHover={{ scale: 1.03 }}
-                  transition={{ duration: 0.28 }}
-                  className="rounded-lg overflow-hidden mb-4 relative w-full"
-                >
-                  {release.image ? (
-                    <img src={release.image} alt={release.title} className="w-full h-auto object-cover block" />
-                  ) : (
-                    <div className="w-full h-auto bg-secondary/40 min-h-[220px]" />
-                  )}
-                  <div className="absolute inset-0 bg-background/0 group-hover:bg-background/20 transition-colors duration-300" />
-                </motion.div>
+              {release.youtubeLink ? (
+                <a href={release.youtubeLink} target="_blank" rel="noopener noreferrer" className="group block">
+                  <motion.div
+                    whileHover={{ scale: 1.03 }}
+                    transition={{ duration: 0.28 }}
+                    className="rounded-lg overflow-hidden mb-4 relative w-full"
+                  >
+                    {release.image ? (
+                      <img src={release.image} alt={release.title} className="w-full h-auto object-cover block" />
+                    ) : (
+                      <div className="w-full h-auto bg-secondary/40 min-h-[220px]" />
+                    )}
+                    <div className="absolute inset-0 bg-background/0 group-hover:bg-background/20 transition-colors duration-300" />
+                  </motion.div>
 
-                <p className="label-caps text-xs mb-2">{release.type} · {release.year}</p>
-                <h2 className="text-2xl font-bold text-foreground mb-2 group-hover:text-muted-foreground transition-colors">{release.title}</h2>
-                <p className="text-muted-foreground text-sm leading-relaxed line-clamp-3 mb-4">{release.description}</p>
+                  <p className="label-caps text-xs mb-2">{release.type} · {release.year}</p>
+                  <h2 className="text-2xl font-bold text-foreground mb-2 group-hover:text-muted-foreground transition-colors">{release.title}</h2>
+                  <p className="text-muted-foreground text-sm leading-relaxed line-clamp-3 mb-4">{release.description}</p>
 
-                <span className="inline-block text-sm font-medium text-foreground/70 hover:text-foreground transition-colors">View project →</span>
-              </Link>
+                  <span className="inline-block text-sm font-medium text-foreground/70 hover:text-foreground transition-colors">View project →</span>
+                </a>
+              ) : (
+                <Link to={`/music/${release.slug}`} className="group block">
+                  <motion.div
+                    whileHover={{ scale: 1.03 }}
+                    transition={{ duration: 0.28 }}
+                    className="rounded-lg overflow-hidden mb-4 relative w-full"
+                  >
+                    {release.image ? (
+                      <img src={release.image} alt={release.title} className="w-full h-auto object-cover block" />
+                    ) : (
+                      <div className="w-full h-auto bg-secondary/40 min-h-[220px]" />
+                    )}
+                    <div className="absolute inset-0 bg-background/0 group-hover:bg-background/20 transition-colors duration-300" />
+                  </motion.div>
+
+                  <p className="label-caps text-xs mb-2">{release.type} · {release.year}</p>
+                  <h2 className="text-2xl font-bold text-foreground mb-2 group-hover:text-muted-foreground transition-colors">{release.title}</h2>
+                  <p className="text-muted-foreground text-sm leading-relaxed line-clamp-3 mb-4">{release.description}</p>
+
+                  <span className="inline-block text-sm font-medium text-foreground/70 hover:text-foreground transition-colors">View project →</span>
+                </Link>
+              )}
             </motion.div>
           ))}
         </div>
