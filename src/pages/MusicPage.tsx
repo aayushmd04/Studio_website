@@ -10,6 +10,7 @@ export default function ProjectsPage() {
     (async () => {
       try {
         const rows = await fetchProjectsFromSupabase();
+        console.log("Supabase rows:", rows); // Debug log
         const mapped = await Promise.all(rows.map(async (r: any) => ({
           slug: String(r.slug || "").trim(),
           title: String(r.title || "").trim(),
@@ -41,12 +42,12 @@ export default function ProjectsPage() {
                 <motion.div
                   whileHover={{ scale: 1.03 }}
                   transition={{ duration: 0.28 }}
-                  className="aspect-square rounded-lg overflow-hidden mb-4 relative"
+                  className="rounded-lg overflow-hidden mb-4 relative w-full"
                 >
                   {release.image ? (
-                    <img src={release.image} alt={release.title} className="w-full h-full object-cover" />
+                    <img src={release.image} alt={release.title} className="w-full h-auto object-cover block" />
                   ) : (
-                    <div className="w-full h-full bg-secondary/40" />
+                    <div className="w-full h-auto bg-secondary/40 min-h-[220px]" />
                   )}
                   <div className="absolute inset-0 bg-background/0 group-hover:bg-background/20 transition-colors duration-300" />
                 </motion.div>
